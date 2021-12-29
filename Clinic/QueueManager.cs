@@ -8,7 +8,7 @@ namespace Clinic
 {
     internal class QueueManager
     {
-        private SortedDictionary<DateOnly, List<Appointment>> queue;
+        private SortedDictionary<DateOnly, List<Appointment>> queue = new SortedDictionary<DateOnly, List<Appointment>>();
 
         public void Add(Appointment appointment)
         {

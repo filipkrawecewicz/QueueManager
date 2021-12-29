@@ -8,6 +8,12 @@
         Title="MainWindow" Height="700" Width="1200">
 
     <Window.Resources>
+
+        <Storyboard x:Key="sbHideAnimation" >
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"  From="1" To="1" Duration="0:0:3" />
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" BeginTime="0:0:3" From="1" To="0" DecelerationRatio=".5" Duration="0:0:2" />
+        </Storyboard>
+
         <ControlTemplate x:Key="MainView">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowGridLines="False" Background="#f8f9fa">
                 <Grid.ColumnDefinitions>
@@ -53,25 +59,29 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
                 
                 
 
                 <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"  Text="Dodaj Badanie" FontWeight="Bold" FontSize="16" Foreground="#05445E" />
-                <TextBlock Grid.Column="1" Grid.Row="2" Text="Imię:" Margin="10" FontWeight="SemiBold"/>
+                <TextBlock Name="AddForm_Name" Grid.Column="1" Grid.Row="2" Text="Imię:" Margin="10" FontWeight="SemiBold"/>
                 <TextBox Grid.Column="2" Grid.Row="2" Margin="10" MinWidth="100" BorderBrush="#dee2e6" MaxWidth="450" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Column="1" Grid.Row="3" Text="Badanie:" Margin="10" FontWeight="SemiBold"/>
+                <TextBlock Name="AddForm_TestName" Grid.Column="1" Grid.Row="3" Text="Badanie:" Margin="10" FontWeight="SemiBold"/>
                 <TextBox Grid.Column="2" Grid.Row="3" Margin="10" MinWidth="100" BorderBrush="#dee2e6"/>
                 <TextBlock Grid.Column="1" Grid.Row="4" Text="Data Badania:" Margin="10" FontWeight="SemiBold"/>
-                <DatePicker  Grid.Column="2" Grid.Row="4" Margin="10" MinWidth="100" BorderBrush="#dee2e6"/>
+                <DatePicker Name="AddForm_Date" Grid.Column="2" Grid.Row="4" Margin="10" MinWidth="100" BorderBrush="#dee2e6"/>
+               
 
                 <Button Grid.Column="2" Grid.Row="5" x:Name="AddAppointmentBtn" Content="Dodaj" Padding="15,5" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                Background="#F05454" Foreground="#ffffff" FontSize="14" FontWeight="Bold"  />
+                Background="#F05454" Foreground="#ffffff" FontSize="14" FontWeight="Bold" Click="AddAppointmentBtn_Add" />
 
                 <Button Grid.Column="2" Grid.Row="6" Click="MainViewBtn_Click" x:Name="MainViewBtn" Content="Powrót do strony głównej" Padding="15,0" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
                 Background="#F05454" Foreground="#ffffff" FontSize="14" FontWeight="Bold"  />
 
+                <TextBlock x:Name="AddForm_ErrorMsg" Grid.Column="2" Grid.Row="7" Text="Wypełnij wszystkie pola!" Margin="10" FontWeight="SemiBold" Background="Red" Foreground="White" FontSize="20" HorizontalAlignment="Stretch" TextAlignment="Center" Padding="10" Opacity="0"/>
 
             </Grid>
         </ControlTemplate>
@@ -121,6 +131,6 @@
         </ControlTemplate>
     </Window.Resources>
     <Grid>
-        <Control x:Name="ViewController" Template="{StaticResource MainView}"/>
+        <Control x:Name="ViewController" Template="{StaticResource AddAppointmentView}"/>
     </Grid>
 </Window>
