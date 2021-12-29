@@ -16,5 +16,19 @@ namespace Clinic
             var dayQueuePair = queue.FirstOrDefault(kv => kv.Key.Equals(date), KeyValuePair.Create(date, new List<Appointment>()));
             dayQueuePair.Value.Add(appointment);
         }
+
+        public void Insert(int position, Appointment appointment)
+        {
+            DateOnly date = appointment.AppointmentDate;
+            var dayQueuePair = queue.FirstOrDefault(kv => kv.Key.Equals(date), KeyValuePair.Create(date, new List<Appointment>()));
+            dayQueuePair.Value.Insert(position, appointment);
+        }
+
+        public void Remove(Appointment appointment)
+        {
+            DateOnly date = appointment.AppointmentDate;
+            var dayQueuePair = queue.FirstOrDefault(kv => kv.Key.Equals(date), KeyValuePair.Create(date, new List<Appointment>()));
+            dayQueuePair.Value.Remove(appointment);
+        }
     }
 }
