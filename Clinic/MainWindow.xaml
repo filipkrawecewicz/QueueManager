@@ -77,9 +77,11 @@
         </ControlTemplate>
 
         <ControlTemplate x:Key="PatientView">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowGridLines="False" Background="#f8f9fa">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowGridLines="True" Background="#f8f9fa">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
@@ -95,6 +97,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
                     <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"  Text="Lista Pacjentów" FontWeight="Bold" FontSize="16" Foreground="#05445E" />
@@ -104,7 +107,14 @@
                     <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5"  Text="Ostatnie Badanie:" FontWeight="Bold" FontSize="16" />
                     <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6"  Text="Data Ostatniego Badania:" FontWeight="Bold" FontSize="16" />
 
-                <Button Grid.Column="4" Grid.Row="7" Click="MainViewBtn_Click" x:Name="MainViewBtn" Content="Powrót do strony głównej" Padding="15,0" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
+
+                <Button Grid.Column="6" Grid.Row="7" Click="MainViewBtn_Click" x:Name="MainViewBtn" Content="Powrót do strony głównej" Padding="15,0" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Background="#F05454" Foreground="#ffffff" FontSize="14" FontWeight="Bold"  />
+
+                <Button Grid.Column="4" Grid.Row="7" x:Name="PreviousPatientBtn" Content="Poprzedni Pacjent" Padding="15,0" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Background="#F05454" Foreground="#ffffff" FontSize="14" FontWeight="Bold"  />
+
+                <Button Grid.Column="5" Grid.Row="7" x:Name="NextPatientBtn" Content="Następny Pacjent" Padding="15,0" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
                 Background="#F05454" Foreground="#ffffff" FontSize="14" FontWeight="Bold"  />
 
             </Grid>
