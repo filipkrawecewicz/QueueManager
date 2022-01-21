@@ -14,8 +14,8 @@
             <DoubleAnimation Storyboard.TargetProperty="Opacity" BeginTime="0:0:3" From="1" To="0" DecelerationRatio=".5" Duration="0:0:2" />
         </Storyboard>
 
-        <ControlTemplate x:Key="MainView">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowGridLines="False" Background="#f8f9fa">
+        <ControlTemplate x:Key="MainView" >
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowGridLines="False" Background="#f8f9fa" IsVisibleChanged="Grid_IsVisibleChanged">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="auto"/>
@@ -30,6 +30,8 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"  Text="Lista Badań" FontWeight="Bold" FontSize="16" Foreground="#05445E" />
@@ -39,12 +41,14 @@
 
                 <Button Grid.Column="2" Grid.Row="6" Click="PatientViewBtn_Click" x:Name="PatientViewBtn" Content="Widok Pacjentów" Padding="15,0" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
                 Background="#F05454" Foreground="#ffffff" FontSize="14" FontWeight="Bold"  />
+
+                <DataGrid x:Name="Appointments" Grid.Column="2" Grid.Row="7" Background="CornflowerBlue"/>
             </Grid>
         </ControlTemplate>
 
 
         <ControlTemplate x:Key="AddAppointmentView">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowGridLines="False" Background="#f8f9fa">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowGridLines="True" Background="#f8f9fa">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="auto"/>
@@ -67,10 +71,10 @@
                 
 
                 <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"  Text="Dodaj Badanie" FontWeight="Bold" FontSize="16" Foreground="#05445E" />
-                <TextBlock Name="AddForm_Name" Grid.Column="1" Grid.Row="2" Text="Imię:" Margin="10" FontWeight="SemiBold"/>
-                <TextBox Grid.Column="2" Grid.Row="2" Margin="10" MinWidth="100" BorderBrush="#dee2e6" MaxWidth="450" HorizontalAlignment="Left"/>
-                <TextBlock Name="AddForm_TestName" Grid.Column="1" Grid.Row="3" Text="Badanie:" Margin="10" FontWeight="SemiBold"/>
-                <TextBox Grid.Column="2" Grid.Row="3" Margin="10" MinWidth="100" BorderBrush="#dee2e6"/>
+                <TextBlock  Grid.Column="1" Grid.Row="2" Text="Imię:" Margin="10" FontWeight="SemiBold"/>
+                <TextBox Name="AddForm_Name" Grid.Column="2" Grid.Row="2" Margin="10" MinWidth="100" BorderBrush="#dee2e6" MaxWidth="450" HorizontalAlignment="Left"/>
+                <TextBlock  Grid.Column="1" Grid.Row="3" Text="Badanie:" Margin="10" FontWeight="SemiBold"/>
+                <TextBox Name="AddForm_TestName" Grid.Column="2" Grid.Row="3" Margin="10" MinWidth="100" BorderBrush="#dee2e6"/>
                 <TextBlock Grid.Column="1" Grid.Row="4" Text="Data Badania:" Margin="10" FontWeight="SemiBold"/>
                 <DatePicker Name="AddForm_Date" Grid.Column="2" Grid.Row="4" Margin="10" MinWidth="100" BorderBrush="#dee2e6"/>
                
@@ -117,6 +121,10 @@
                     <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5"  Text="Ostatnie Badanie:" FontWeight="Bold" FontSize="16" />
                     <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6"  Text="Data Ostatniego Badania:" FontWeight="Bold" FontSize="16" />
 
+                    <Label Grid.Column="4" Grid.Row="2"/>
+                    <Label Grid.Column="4" Grid.Row="3"/>
+                    <Label Grid.Column="4" Grid.Row="4"/>
+
 
                 <Button Grid.Column="6" Grid.Row="7" Click="MainViewBtn_Click" x:Name="MainViewBtn" Content="Powrót do strony głównej" Padding="15,0" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" 
                 Background="#F05454" Foreground="#ffffff" FontSize="14" FontWeight="Bold"  />
@@ -131,6 +139,6 @@
         </ControlTemplate>
     </Window.Resources>
     <Grid>
-        <Control x:Name="ViewController" Template="{StaticResource AddAppointmentView}"/>
+        <Control x:Name="ViewController" Template="{StaticResource MainView}"/>
     </Grid>
 </Window>

@@ -45,8 +45,8 @@ namespace Clinic
 
         private void AddAppointmentBtn_Add(object sender, RoutedEventArgs e)
         {
-            TextBlock nameBox = (TextBlock) ViewController.Template.FindName("AddForm_Name", ViewController);
-            TextBlock testName = (TextBlock)ViewController.Template.FindName("AddForm_TestName", ViewController);
+            TextBox nameBox = (TextBox) ViewController.Template.FindName("AddForm_Name", ViewController);
+            TextBox testName = (TextBox)ViewController.Template.FindName("AddForm_TestName", ViewController);
             DatePicker appointmentDate = (DatePicker)ViewController.Template.FindName("AddForm_Date", ViewController);
 
             if (nameBox.Text.Length == 0 || testName.Text.Length == 0 || appointmentDate.SelectedDate == null)
@@ -66,6 +66,13 @@ namespace Clinic
 
                 queueManager.Add(appointment);
             }
+        }
+
+        private void Grid_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var  list = queueManager.GetQueueFor(new DateOnly());
+            DataGrid grid = (DataGrid)ViewController.Template.FindName("Appointments", ViewController);
+            //grid.ItemsSource = list;
         }
     }
 }
